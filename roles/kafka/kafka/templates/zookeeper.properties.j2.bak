@@ -1,0 +1,16 @@
+tickTime=2000
+initLimit=5
+syncLimit=2
+dataDir={{ zookeeper_data_dir }}
+clientPort={{ zookeeper_port }}
+maxClientCnxns=0
+admin.enableServer=false
+admin.serverPort=8080
+standaloneEnabled=false
+autopurge.snapRetainCount=3
+autopurge.purgeInterval=24
+
+# Zookeeper cluster bootstrap
+{% for host in groups['kafka'] %}
+server.{{ loop.index }}={{ host }}:2888:3888
+{% endfor -%}

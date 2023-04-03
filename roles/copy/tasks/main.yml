@@ -1,0 +1,12 @@
+---
+- name: Copy file with owner and permission, using symbolic representation
+  copy:
+    src: "{{ item }}"
+    dest: "~/yaml-config/cka-lab"
+#    owner: root
+#    group: root
+    mode: u=rw,g=r,o=r
+  loop: 
+#    - /home/truongnqk/authorized_keys
+    - /mnt/c/01-VDCS/Ansible/k8s-yaml/cka-lab/job.yaml
+#  become: true

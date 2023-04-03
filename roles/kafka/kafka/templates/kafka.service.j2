@@ -1,0 +1,21 @@
+[Unit]
+Description=Apache Kafka
+Documentation=http://kafka.apache.org/documentation.html
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target zookeeper.service
+
+[Service]
+Type=simple
+User=kafka
+Group=kafka
+Environment=JAVA_HOME={{ java_home }}
+ExecStart={{ kafka_home_dir }}/bin/kafka-server-start.sh {{ kafka_home_dir }}/config/server.properties
+ExecStop={{ kafka_home_dir }}/bin/kafka-server-stop.sh
+Restart=always
+TimeoutStopSec=5
+LimitNOFILE=infinity
+SyslogIdentifier=kafka
+
+[Install]
+WantedBy=multi-user.target
+Alias=kafka.service

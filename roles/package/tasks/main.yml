@@ -1,0 +1,7 @@
+---
+# tasks file for package
+
+- name: Install require package
+  apt:
+    name: glances
+    state: present

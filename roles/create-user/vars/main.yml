@@ -1,0 +1,10 @@
+---
+# vars file for create-user
+  user_details:
+  - { name: truongnqk, password: 'N0th1n9@123' }
+
+  sudoers:
+  - { name: truongnqk }
+
+  directory:
+  - { name: truongnqk, group: truongnqk }
