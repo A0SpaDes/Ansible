@@ -1,0 +1,10 @@
+[fwork-test]
+172.16.1.225 ansible_user=ubuntu ansible_password=k4w47zKFXJ
+
+[worker]
+172.16.1.159 ansible_user=ubuntu ansible_password=k4w47zKFXJ
+172.16.1.236 ansible_user=ubuntu ansible_password=k4w47zKFXJ
+
+[app]
+172.16.1.166 ansible_user=ubuntu ansible_password=k4w47zKFXJ
+172.16.1.180 ansible_user=ubuntu ansible_password=k4w47zKFXJ

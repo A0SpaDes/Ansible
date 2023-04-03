@@ -1,0 +1,10 @@
+---
+- hosts: app
+  strategy: free
+  gather_facts: true
+  become: true
+  roles:
+    - { role: ping, tags: ping }
+    - { role: package, tags: package }
+    - { role: copy, tags: copy }
+    - { role: create-user, tags: create-user }

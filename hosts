@@ -1,0 +1,25 @@
+[k8sMaster]
+#10.235.0.61 ansible_user=truongnqk
+10.235.0.62 ansible_user=truongnqk
+
+[PreHost]
+10.235.0.63 ansible_user=truongnqk
+
+[minio]
+10.10.37.166 ansible_user=truongnqk ansible_port=2222
+10.10.37.125 ansible_user=truongnqk ansible_port=2222
+10.10.37.136 ansible_user=truongnqk ansible_port=2222
+10.10.37.145 ansible_user=truongnqk ansible_port=2222
+10.10.37.168 ansible_user=truongnqk ansible_port=2222
+10.10.37.169 ansible_user=truongnqk ansible_port=2222
+
+[minio2]
+10.10.37.170 ansible_user=truongnqk ansible_port=2222
+10.10.35.94 ansible_user=truongnqk ansible_port=2222
+
+[minio3]
+10.10.37.166 ansible_user=truongnqk ansible_port=2222
+10.10.35.145 ansible_user=truongnqk ansible_port=2222
+
+[create-user]
+10.235.0.61 ansible_user=truongnqk ansible_password=N0th1n9@123
