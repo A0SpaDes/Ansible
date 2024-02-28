@@ -1,0 +1,5 @@
+# tasks file for DatadogRS
+- name: Shell install DataDog_RS
+  ansible.builtin.shell: |
+    sudo DD_API_KEY=79e81cf0a2652342f131e5b7a94d565a DD_SITE="datadoghq.com" DD_APM_INSTRUMENTATION_ENABLED=host bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script_agent7.sh)"
+
