@@ -1,5 +1,5 @@
 ---
 collections:
-  - name: community.general
-    version: ">=7.0.0"
-    source: https://galaxy.ansible.com
+  - name: ansible.netcommon
+    version: *
+    source: https://github.com/ansible-collections/ansible.netcommon.git
