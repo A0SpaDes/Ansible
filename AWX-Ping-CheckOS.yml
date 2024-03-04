@@ -1,12 +1,12 @@
 ---
 - name: Ping - Check OS - Sample
   hosts: all
+  strategy: free
+  gather_facts: true
+  become: true
   tasks:
     - name: Test ping
       ansible.builtin.ping:
-    - name: Test reachability to 1.1.1.1 using default vrf
-      ansible.netcommon.net_ping:
-        dest: 1.1.1.1
     - name: Check OS
       ansible.builtin.shell: |
         cat /etc/os-release
