@@ -7,6 +7,7 @@
   tasks:
     - name: Test ping
       ansible.builtin.ping:
-    - name: Check OS
-      ansible.builtin.shell: |
-        cat /etc/os-release
+    - name: Check Dist Version
+      shell: cat /etc/os-release
+      register: response
+    - debug: msg="{{ response.stdout }}"
