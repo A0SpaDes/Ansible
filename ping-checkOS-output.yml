@@ -4,7 +4,7 @@
   gather_facts: true
   tasks:
     - name: Test ping
-      ansible.builtin.ping
+      ansible.builtin.ping:
 
     - name: Gather system details
       set_fact:
