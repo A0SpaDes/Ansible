@@ -19,3 +19,4 @@
         content: "{{ system_details | to_nice_json }}"
         dest: "/path/on/ansible/server/CheckOS.out"
       delegate_to: localhost
+      become: false
