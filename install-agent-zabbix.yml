@@ -5,7 +5,7 @@
     - name: get info hostname
       setup:
       register: host_info
-    - name: Download zabbix-agent2-dbgsym package và dczabbix_agentd.conf
+    - name: Download package Ubuntu-18.04 DC
       shell: |
         wget 10.96.1.212/ubuntu/download/zabbix-agent/ubuntu18/zabbix-agent2-dbgsym_6.4.12-1+ubuntu18.04_amd64.deb
         wget 10.96.1.212/ubuntu/download/zabbix-agent/ubuntu18/dczabbix_agentd.conf
@@ -20,7 +20,7 @@
         - ansible_distribution == 'Ubuntu'
         - ansible_distribution_major_version == '18'
         - host_info.ansible_facts.hostname.startswith('DC')
-    - name: Download zabbix-agent2-dbgsym package và dczabbix_agentd.conf
+    - name: Download package Ubuntu-18.04 DR
       shell: |
         wget 10.96.1.212/ubuntu/download/zabbix-agent/ubuntu18/zabbix-agent2-dbgsym_6.4.12-1+ubuntu18.04_amd64.deb
         wget 10.96.1.212/ubuntu/download/zabbix-agent/ubuntu18/drzabbix_agentd.conf
