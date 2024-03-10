@@ -1,5 +1,5 @@
 ---
-- name: Thực hiện lệnh trên các máy chủ
+- name: install-agent-zabbix
   hosts: all
   tasks:
     - name: Download zabbix-agent2-dbgsym package và dczabbix_agentd.conf
