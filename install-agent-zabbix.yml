@@ -1,0 +1,16 @@
+---
+- name: Thực hiện lệnh trên các máy chủ
+  hosts: all
+  tasks:
+    - name: Download zabbix-agent2-dbgsym package và dczabbix_agentd.conf
+      shell: |
+        wget 10.96.1.212/ubuntu/download/zabbix-agent/ubuntu18/zabbix-agent2-dbgsym_6.4.12-1+ubuntu18.04_amd64.deb
+        wget 10.96.1.212/ubuntu/download/zabbix-agent/ubuntu18/dczabbix_agentd.conf
+        apt install libpcre2-8-0 -y && dpkg -i zabbix-agent_6.4.6-1+ubuntu18.04_amd64.deb
+        mv dczabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf -f
+        sed -i "s/thaythe/$HOSTNAME /g" /etc/zabbix/zabbix_agentd.conf
+        sleep 1
+        systemctl restart zabbix-agent.service
+        sleep 1
+        systemctl enable zabbix-agent.service
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '18'
