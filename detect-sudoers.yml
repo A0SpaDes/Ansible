@@ -6,7 +6,8 @@
   become: true
   tasks:
     - name: Lấy danh sách người dùng
-      shell: "grep 's*ALL' /etc/sudoers"
+      shell: |
+        grep '^[[:space:]]*[^#].*ALL$' /etc/sudoers
       register: sudoers_result
     - name: Xuất danh sách người dùng
       debug:
