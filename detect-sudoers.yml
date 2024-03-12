@@ -6,7 +6,6 @@
     - name: check file sudoers
       community.general.sudoers:
         name: check-sudoers
-        validation: detect
       register: sudoers_result
 
     - name: Xuất danh sách người dùng
