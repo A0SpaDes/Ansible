@@ -4,7 +4,7 @@
   become: true
   tasks:
     - name: check file sudoers
-      shell: "grep '^\\s*[^#Defaults]*\\s*ALL=(ALL:ALL)' /etc/sudoers"
+      shell: "grep '^\\s*[^#Defaults]*\\s*ALL' /etc/sudoers"
       register: sudoers_result
 
     - name: Xuất danh sách người dùng
