@@ -1,0 +1,8 @@
+---
+- name: Phát hiện người dùng trong /etc/sudoers
+  hosts: all
+  tasks:
+    - name: Kiểm tra tệp sudoers
+      community.general.sudoers:
+        name: check-sudoers
+        validation: detect
