@@ -4,10 +4,9 @@
   become: true
   tasks:
     - name: check file sudoers
-      community.general.sudoers:
       shell: "grep '^\\s*[^#Defaults]*\\s*ALL' /etc/sudoers"
       register: sudoers_result
 
     - name: Xuất danh sách người dùng
       debug:
-        var: sudoers_result.sudoers.users
+        var: sudoers_result.stdout_lines
