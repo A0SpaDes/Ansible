@@ -7,6 +7,9 @@
   tasks:
     - name: Test ping
       ansible.builtin.ping:
+    - name: Ping 2 package to 1.1.1.1
+      ansible.builtin.shell: |
+        - ping 1.1.1.1 -c 2
     - name: System details
       debug: msg="{{ item }}"
       with_items: 
