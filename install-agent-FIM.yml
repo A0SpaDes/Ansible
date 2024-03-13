@@ -15,7 +15,7 @@
         sudo systemctl start wazuh-agent
       when:
         - ansible_distribution == 'Ubuntu'
-#        - ansible_distribution_major_version == '18'
+        - ansible_distribution_major_version >= '18'
 #        - ansible_hostname.startswith('DC')
 
     - name: Download package & install FIM on CentOS-7+
@@ -27,7 +27,7 @@
         sudo systemctl start wazuh-agent
       when:
         - ansible_distribution == 'CentOS'
-#        - ansible_distribution_major_version == '18'
+        - ansible_distribution_major_version >= '18'
 #        - ansible_hostname.startswith('DR')
 
     - name: Download package & install FIM on Rhel-7+
@@ -39,5 +39,5 @@
         sudo systemctl start wazuh-agent
       when:
         - ansible_distribution == 'RedHat'
-#        - ansible_distribution_major_version == '7'
+        - ansible_distribution_major_version >= '7'
 #        - ansible_hostname.startswith('DR')
