@@ -1,1 +1,43 @@
+---
+- name: install-agent-zabbix
+  hosts: all
+  tasks:
+    - name: get info host
+      setup:
+      register: host_info
+      
+    - name: Download package & install FIM on Ubuntu
+      ansible.builtin.command: |
+        curl -so wazuh-agent.deb https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.5.2-1_amd64.deb 
+        sudo WAZUH_AGENT_GROUP='OCB_SOC_FIM' WAZUH_AGENT_NAME='OCB_SOC_FIM_Ubuntu15' dpkg -i ./wazuh-agent.deb
+        sudo systemctl daemon-reload
+        sudo systemctl enable wazuh-agent
+        sudo systemctl start wazuh-agent
+      when:
+        - ansible_distribution == 'Ubuntu'
+#        - ansible_distribution_major_version == '18'
+#        - host_info.ansible_facts.hostname.startswith('DC')
 
+    - name: Download package & install FIM on CentOS-7+
+      ansible.builtin.command: |
+        sudo WAZUH_MANAGER='https://10.98.71.68:8443' WAZUH_AGENT_GROUP='OCB_SOC_FIM' WAZUH_AGENT_NAME='OCB_SOC_FIM_CentOS7'
+        yum install -y https://packages.wazuh.com/4.x/yum/wazuh-agent-4.5.2-1.x86_64.rpm
+        sudo systemctl daemon-reload
+        sudo systemctl enable wazuh-agent
+        sudo systemctl start wazuh-agent
+      when:
+        - ansible_distribution == 'CentOS'
+#        - ansible_distribution_major_version == '18'
+#        - host_info.ansible_facts.hostname.startswith('DR')
+
+    - name: Download package & install FIM on Rhel-7+
+      ansible.builtin.command: |
+        sudo WAZUH_MANAGER='https://10.98.71.68:8443' WAZUH_AGENT_GROUP='OCB_SOC_FIM' WAZUH_AGENT_NAME='OCB_SOC_FIM_RetHat7'
+        yum install -y https://packages.wazuh.com/4.x/yum/wazuh-agent-4.5.2-1.x86_64.rpm
+        sudo systemctl daemon-reload
+        sudo systemctl enable wazuh-agent
+        sudo systemctl start wazuh-agent
+      when:
+        - ansible_distribution == 'RedHat'
+#        - ansible_distribution_major_version == '18'
+#        - host_info.ansible_facts.hostname.startswith('DR')
