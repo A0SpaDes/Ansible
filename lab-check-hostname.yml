@@ -5,12 +5,12 @@
   gather_facts: true
   become: true
   tasks:
-    - name: get info host
-      setup:
-      register: host_info
+
     - name: export
       debug:
-        var: host_info.stdout_lines
+        - msg="{{ansible_hostname}}"
+      when:
+        - ansible_hostname.startswith('DC')
 #    - name: System details
 #      debug: msg="{{ item }}"
 #      with_items: 
