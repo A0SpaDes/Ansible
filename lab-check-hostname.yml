@@ -6,23 +6,23 @@
   become: true
   tasks:
 
-    - name: export info if ubuntu-20 & hostname start with DC
+    - name: export info if ubuntu ver >= 18 & hostname start with DC
       debug: 
         msg:
         - "hostname is: {{ ansible_hostname }}"
         - "OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
       when:
         - ansible_distribution == 'Ubuntu'
-        - ansible_distribution_major_version == '20'
+        - ansible_distribution_major_version >= '18'
         - ansible_hostname.startswith('DC')
 
-    - name: export info if ubuntu-20 & hostname start with DR
+    - name: export info if ubuntu ver >= 18 & hostname start with DR
       debug: 
         msg:
         - "hostname is: {{ ansible_hostname }}"
         - "OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
       when:
         - ansible_distribution == 'Ubuntu'
-        - ansible_distribution_major_version == '20'
+        - ansible_distribution_major_version >= '18'
         - ansible_hostname.startswith('DR')
 
