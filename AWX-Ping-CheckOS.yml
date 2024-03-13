@@ -20,4 +20,4 @@
     - local_action: 
         module: copy 
         content: "{{ item }}"
-        dest: /var/lib/awx/projects/log-run/CheckOS.out
+        dest: ~/CheckOS.out
