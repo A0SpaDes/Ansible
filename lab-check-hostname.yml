@@ -9,7 +9,7 @@
     - name: export DC
       debug: msg="{{ item }}"
       with_items: 
-      - "{{ ansible_hostname }}"
+      - "{{ Hostnae is: ansible_hostname }}"
       - "{{ ansible_distribution }}"
       - "{{ ansible_distribution_version }}"
       - "{{ ansible_distribution_major_version }}"
