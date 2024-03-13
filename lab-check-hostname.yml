@@ -20,4 +20,4 @@
 #        content: "{{ item }}"
 #        dest: ~/CheckOS.out
       when:
-        - host_info.ansible_facts.hostname.startswith('Lab')
+        - host_info.ansible_facts.hostname.startswith('DC')
