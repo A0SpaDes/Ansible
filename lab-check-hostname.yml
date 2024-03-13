@@ -6,7 +6,7 @@
   become: true
   tasks:
 
-    - name: export DC
+    - name: export info if ubuntu-20 & hostname start with DC
       debug: 
         msg:
         - "hostname is: {{ ansible_hostname }}"
@@ -16,7 +16,7 @@
         - ansible_distribution_major_version == '20'
         - ansible_hostname.startswith('DC')
 
-    - name: export DR
+    - name: export info if ubuntu-20 & hostname start with DR
       debug: 
         msg:
         - "hostname is: {{ ansible_hostname }}"
