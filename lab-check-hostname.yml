@@ -8,7 +8,7 @@
 
     - name: export
       debug:
-        - msg="{{ansible_hostname}}"
+        - var: "{{ansible_hostname}}"
       when:
         - ansible_hostname.startswith('DC')
 #    - name: System details
