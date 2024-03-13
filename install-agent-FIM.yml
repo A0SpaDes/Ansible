@@ -1,6 +1,9 @@
 ---
 - name: install-agent-zabbix
   hosts: all
+  strategy: free
+  gather_facts: true
+  become: true
   tasks:
       
     - name: Download package & install FIM on Ubuntu
