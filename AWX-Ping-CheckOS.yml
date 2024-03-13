@@ -10,6 +10,10 @@
     - name: Ping 2 package to 1.1.1.1
       ansible.builtin.shell: |
         ping 1.1.1.1 -c 2
+      register: ping-result
+    - name: ping 1.1.1.1 result
+      debug:
+        var: ping-result.stdout_lines
     - name: System details
       debug: msg="{{ item }}"
       with_items: 
