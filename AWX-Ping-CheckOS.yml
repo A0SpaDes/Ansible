@@ -14,7 +14,7 @@
       register: ping-result
     - name: ping 1.1.1.1 result
       debug:
-        var: ping-result.stdout_lines
+        msg: "Ping to 1.1.1.1: {{ 'Success' if ping_result.ping else 'Failure' }}"
     - name: System details
       debug: msg="{{ item }}"
       with_items: 
