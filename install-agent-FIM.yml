@@ -2,9 +2,9 @@
 - name: install-agent-zabbix
   hosts: all
   tasks:
-    - name: get info host
-      setup:
-      register: host_info
+#    - name: get info host
+#      setup:
+#      register: host_info
       
     - name: Download package & install FIM on Ubuntu
       ansible.builtin.command: |
