@@ -5,10 +5,11 @@
   gather_facts: true
   become: true
   tasks:
-    - name: Lấy danh sách người dùng
-      shell: |
-        grep '^[[:space:]]*[^#].*ALL$' /etc/sudoers
-      register: sudoers_result
-    - name: Xuất danh sách người dùng
+    - name: get info host
+      setup:
+      register: host_info
+
+    - name: export hostname
       debug:
-        var: sudoers_result.stdout_lines
+        var: host_info.ansible_facts.hostname
+
