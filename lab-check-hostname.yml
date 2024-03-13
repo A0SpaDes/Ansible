@@ -2,7 +2,7 @@
 - name: lab-check-hostname
   hosts: all
   strategy: free
-  gather_facts: false
+  gather_facts: true
   become: true
   tasks:
 
