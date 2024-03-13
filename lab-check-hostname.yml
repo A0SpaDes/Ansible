@@ -8,8 +8,7 @@
     - name: get info host
       setup:
       register: host_info
-
-    - name: export hostname
-      debug:
-        var: host_info.ansible_facts.hostname
-
+    - name: Test ping
+      ansible.builtin.ping:
+      when:
+        - host_info.ansible_facts.hostname.startswith('Lab')
