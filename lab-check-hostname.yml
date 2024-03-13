@@ -19,8 +19,8 @@
     - name: export DR
       debug: 
         msg:
-        - hostname is: {{ ansible_hostname }}
-        - OS: {{ ansible_distribution }} {{ ansible_distribution_version }}
+        - "hostname is: {{ ansible_hostname }}"
+        - "OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
       when:
         - ansible_distribution == 'Ubuntu'
         - ansible_distribution_major_version == '20'
