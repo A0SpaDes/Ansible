@@ -7,9 +7,9 @@
   tasks:
 
     - name: export DC
-      debug: 
-        - msg="hostname is: {{ ansible_hostname }}"
-        - msg="OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+      debug: msg:
+        - hostname is: {{ ansible_hostname }}
+        - OS: {{ ansible_distribution }} {{ ansible_distribution_version }}
       when:
         - ansible_distribution == 'Ubuntu'
         - ansible_distribution_major_version == '20'
