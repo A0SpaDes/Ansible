@@ -6,7 +6,7 @@
   become: true
   tasks:
 
-    - name: export
+    - name: export DC
       debug: msg="{{ item }}"
       with_items: 
       - "{{ ansible_hostname }}"
@@ -17,4 +17,16 @@
         - ansible_distribution == 'Ubuntu'
         - ansible_distribution_major_version == '20'
         - ansible_hostname.startswith('DC')
+
+    - name: export DR
+      debug: msg="{{ item }}"
+      with_items: 
+      - "{{ ansible_hostname }}"
+      - "{{ ansible_distribution }}"
+      - "{{ ansible_distribution_version }}"
+      - "{{ ansible_distribution_major_version }}"
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_major_version == '20'
+        - ansible_hostname.startswith('DR')
 
