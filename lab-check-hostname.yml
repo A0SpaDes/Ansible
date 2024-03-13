@@ -8,8 +8,7 @@
 
     - name: export DC
       debug: 
-        -  msg="hostname {{ ansible_hostname }} version {{ ansible_distribution_version }}"
-
+        - msg="hostname {{ ansible_hostname }} version {{ ansible_distribution_version }}"
       when:
         - ansible_distribution == 'Ubuntu'
         - ansible_distribution_major_version == '20'
