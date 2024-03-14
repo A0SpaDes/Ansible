@@ -1,18 +1,18 @@
 #!/bin/sh
-  
+
 read -p 'Enter the Username : ' name
-read -p 'Enter the Group Name : ' group
+read -p 'Enter the path of config (ex: /home/truongnqk/.kube/kubeconfig) : ' path
 read -p 'Enter the Namespace Name: ' namespace
 
 export CLIENT=$name
-export GROUP=$group
+export PATH=$path
 export NAMESPACE=$namespace
- 
-echo -e "\nUsername is: ${CLIENT}\nGroup Name is: ${GROUP}\nand Namespace is: ${NAMESPACE}"
-  
+
+echo -e "\nUsername is: ${CLIENT}\nPath kubeconfig is: ${PATH}\nand Namespace is: ${NAMESPACE}"
+
 mkdir ${CLIENT}
 cd ${CLIENT}
-      
+
 #Generate key & csr
 openssl req -new -newkey rsa:4096 -nodes -keyout ${CLIENT}.key -out ${CLIENT}.csr -subj "/CN=${CLIENT}"
 
@@ -31,8 +31,13 @@ spec:
   - client auth
 EOF
 
-#CA extraction
-oc config view --raw -o jsonpath='{..cluster.certificate-authority-data}' --kubeconfig=/home/truongnqk/.kube/kubeconfig | base64 --decode > ca.crt
+#Client extraction crt
+oc create -f ${CLIENT}-csr.yaml
+oc adm certificate approve ${CLIENT}-access
+oc get csr ${CLIENT}-access -o jsonpath='{.status.certificate}' | base64 -d > ${CLIENT}-access.crt
+
+#CA extraction crt
+oc config view --raw -o jsonpath='{..cluster.certificate-authority-data}' --kubeconfig=${PATH} | base64 --decode > ca.crt
 
 #Set ENV
 export CA_CRT=$(cat ca.crt | base64 -w 0)
