@@ -1,14 +1,14 @@
 #!/bin/sh
 
 read -p 'Enter the Username : ' name
-read -p 'Enter the path of config (ex: /home/truongnqk/.kube/kubeconfig) : ' path
+read -p 'Enter the path of config (ex: /home/truongnqk/.kube/kubeconfig) : ' kubepath
 read -p 'Enter the Namespace Name: ' namespace
 
 export CLIENT=$name
-export PATH=$path
+export kubepath=$kubepath
 export NAMESPACE=$namespace
 
-echo -e "\nUsername is: ${CLIENT}\nPath kubeconfig is: ${PATH}\nand Namespace is: ${NAMESPACE}"
+echo -e "\nUsername is: ${CLIENT}\nPath kubeconfig is: ${kubepath}\nand Namespace is: ${NAMESPACE}"
 
 mkdir ${CLIENT}
 cd ${CLIENT}
@@ -37,7 +37,7 @@ oc adm certificate approve ${CLIENT}-access
 oc get csr ${CLIENT}-access -o jsonpath='{.status.certificate}' | base64 -d > ${CLIENT}-access.crt
 
 #CA extraction crt
-oc config view --raw -o jsonpath='{..cluster.certificate-authority-data}' --kubeconfig=${PATH} | base64 --decode > ca.crt
+oc config view --raw -o jsonpath='{..cluster.certificate-authority-data}' --kubeconfig=${kubepath} | base64 --decode > ca.crt
 
 #Set ENV
 export CA_CRT=$(cat ca.crt | base64 -w 0)
