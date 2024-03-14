@@ -44,7 +44,7 @@ export CA_CRT=$(cat ca.crt | base64 -w 0)
 export CONTEXT=mgmt
 export CLUSTER_ENDPOINT=$(kubectl config view -o jsonpath='{.clusters[?(@.name == "'"$CONTEXT"'")].cluster.server}')
 export USER=${CLIENT}
-export CRT=$(cat ${CLIENT}.crt | base64 -w 0)
+export CRT=$(cat ${CLIENT}-access.crt | base64 -w 0)
 export KEY=$(cat ${CLIENT}.key | base64 -w 0)
 export NAMESPACE=$namespace
 
