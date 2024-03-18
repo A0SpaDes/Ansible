@@ -44,7 +44,7 @@ oc config view --raw -o jsonpath='{..cluster.certificate-authority-data}' --kube
 #Set ENV
 export CA_CRT=$(cat ca.crt | base64 -w 0)
 export CONTEXT=${CLIENT}
-export CLUSTER_ENDPOINT=$(kubectl config view -o jsonpath='{.clusters[?(@.name == "'"$CONTEXT"'")].cluster.server}')
+export CLUSTER_ENDPOINT=$(kubectl config view -o jsonpath='{.clusters[0].cluster.server}')
 export USER=${CLIENT}
 export CRT=$(cat ${CLIENT}-access.crt | base64 -w 0)
 export KEY=$(cat ${CLIENT}.key | base64 -w 0)
