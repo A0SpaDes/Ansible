@@ -4,11 +4,13 @@ read -p 'Enter the Username : ' name
 read -p 'Enter the Group : ' group
 read -p 'Enter the path of config (ex: /home/truongnqk/.kube/kubeconfig) : ' kubepath
 read -p 'Enter the Namespace Name: ' namespace
+read -p 'Enter the name cluster : ' cluster
 
 export CLIENT=$name
 export GROUP=$group
 export kubepath=$kubepath
 export NAMESPACE=$namespace
+export CLUSTER=$cluster
 
 echo -e "\nUsername is: ${CLIENT}\nGroup is: ${GROUP}\nPath kubeconfig is: ${kubepath}\nand Namespace is: ${NAMESPACE}"
 
@@ -56,14 +58,14 @@ apiVersion: v1
 kind: Config
 current-context: ${CONTEXT}
 clusters:
-- name: OCB-OpenShift
+- name: ${CLUSTER}
   cluster:
     certificate-authority-data: ${CA_CRT}
     server: ${CLUSTER_ENDPOINT}
 contexts:
 - name: ${CONTEXT}
   context:
-    cluster: OCB-OpenShift
+    cluster: ${CLUSTER}
     user: ${CLIENT}
     namespace: ${NAMESPACE}
 users:
