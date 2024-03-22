@@ -31,4 +31,4 @@ EOF
 
 kubectl apply -f ${CLIENT}-sa.yaml
 export SACLIENT=$(kubectl -n kubernetes-dashboard create token ${CLIENT}-sa)
-echo $SACLIENT
+echo -e "\nToken for ${CLIENT} is: \n${SACLIENT}"
