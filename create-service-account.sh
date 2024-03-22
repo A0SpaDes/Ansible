@@ -5,9 +5,10 @@ read -p 'Enter the name of ServiceAccount : ' name
 export CLIENT=$name
 
 echo -e "\nUsername is: ${CLIENT}"
+mkdir ${CLIENT}
+cd ${CLIENT}
 
 #Generate ServiceAccount
-
 cat << EOF >> ${CLIENT}-sa.yaml
 apiVersion: v1
 kind: ServiceAccount
