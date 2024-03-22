@@ -44,5 +44,5 @@ type: kubernetes.io/service-account-token
 EOF
 kubectl apply -f ${CLIENT}secret-token.yaml
 
-export SACLIENT=$(kubectl get secret sys-admin-05-sa -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d)
+export SACLIENT=$(kubectl get secret ${CLIENT}-sa -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d)
 echo -e "\nToken for ${CLIENT} is: \n${SACLIENT}"
