@@ -3,7 +3,8 @@
 read -p 'Enter the name of ServiceAccount : ' name
 
 export CLIENT=$name
-echo -e "\nUsername is: ${CLIENT}
+
+echo -e "\nUsername is: ${CLIENT}"
 
 #Generate ServiceAccount
 
@@ -29,4 +30,5 @@ subjects:
 EOF
 
 kubectl apply -f ${CLIENT}-sa.yaml
-kubectl -n kubernetes-dashboard create token ${CLIENT}-sa
+export SACLIENT=$(kubectl -n kubernetes-dashboard create token ${CLIENT}-sa)
+echo $SACLIENT
