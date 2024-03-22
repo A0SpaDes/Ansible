@@ -30,5 +30,18 @@ subjects:
 EOF
 
 kubectl apply -f ${CLIENT}-sa.yaml
-export SACLIENT=$(kubectl -n kubernetes-dashboard create token ${CLIENT}-sa)
+
+#Create Secret to long-lived Bearer Token for ServiceAccount
+cat << EOF >> secret-token.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sys-admin-05-sa
+  namespace: kubernetes-dashboard
+  annotations:
+    kubernetes.io/service-account.name: "sys-admin-05-sa"   
+type: kubernetes.io/service-account-token
+EOF
+
+export SACLIENT=$(kubectl get secret sys-admin-05-sa -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d)
 echo -e "\nToken for ${CLIENT} is: \n${SACLIENT}"
