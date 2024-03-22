@@ -22,26 +22,26 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: cluster-admin
+  name: system:aggregate-to-view
 subjects:
 - kind: ServiceAccount
   name: ${CLIENT}-sa
   namespace: kubernetes-dashboard
 EOF
-
 kubectl apply -f ${CLIENT}-sa.yaml
 
 #Create Secret to long-lived Bearer Token for ServiceAccount
-cat << EOF >> secret-token.yaml
+cat << EOF >> ${CLIENT}secret-token.yaml
 apiVersion: v1
 kind: Secret
 metadata:
-  name: sys-admin-05-sa
+  name: ${CLIENT}-sa
   namespace: kubernetes-dashboard
   annotations:
-    kubernetes.io/service-account.name: "sys-admin-05-sa"   
+    kubernetes.io/service-account.name: "${CLIENT}-sa"   
 type: kubernetes.io/service-account-token
 EOF
+kubectl apply -f ${CLIENT}secret-token.yaml
 
 export SACLIENT=$(kubectl get secret sys-admin-05-sa -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d)
 echo -e "\nToken for ${CLIENT} is: \n${SACLIENT}"
