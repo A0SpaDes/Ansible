@@ -1,5 +1,5 @@
 ---
-- name: install-agent-zabbix
+- name: install-FIM-agent
   hosts: all
   strategy: free
   gather_facts: true
