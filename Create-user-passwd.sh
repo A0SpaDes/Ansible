@@ -1,7 +1,7 @@
 #!/bin/sh
 
 user=soadmin
-password='Ca@7>S5^r"H*8K(PfW+V;d'
+password='Ca@7>S5^r"H'
 
 adduser --quiet --disabled-password --shell /bin/bash --home /home/$user --gecos "User" $user
 
